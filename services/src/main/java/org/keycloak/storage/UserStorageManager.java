@@ -434,6 +434,9 @@ public class UserStorageManager extends AbstractStorageManager<UserStorageProvid
                     return ((UserQueryProvider)provider).searchForUserStream(realm, attributes, firstResultInQuery, maxResultsInQuery);
                 }
             }
+            if(attributes.containsKey(UserModel.SEARCH)){
+                return searchForUserByUserAttributeStream(realm , "mobile_number" , attributes.get(UserModel.SEARCH));
+            }
             return Stream.empty();
         },
         (provider, firstResultInQuery, maxResultsInQuery) -> {
